@@ -50,7 +50,8 @@ def main():
                     snake.number,
                     {snake.number: snake.get_head_position() for snake in snakes},
                     snake.direction,
-                    possible_directions
+                    possible_directions,
+                    snakes,
                 )
                 if direction in possible_directions:
                     snake.direction = direction
@@ -67,7 +68,7 @@ def main():
                 snake_new.score = snake_old.score
             current_round += 1
             if current_round >= MAX_ROUNDS:
-                break
+                breakpoint()
 
         pygame.display.flip()
         clock.tick(10)

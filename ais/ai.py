@@ -1,17 +1,17 @@
 import random
-
+from game_objects.snake import Snake
 from constants import DIRECTIONS
 
 
 class BaseAI:
 
-    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions, snakes: list[Snake]):
         return random.choice(possible_directions)
 
 
 class NoobAI:
 
-    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions, snakes: list[Snake]):
         position = positions[number]
         head_x, head_y = position
         direction = possible_directions[0]
@@ -26,7 +26,7 @@ class NoobAI:
 
 class AlternativeAI:
 
-    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions, snakes: list[Snake]):
         position = positions[number]
         head_x, head_y = position
         direction = current_direction
@@ -46,7 +46,7 @@ class AlternativeAI:
 
 
 class CuddleAI:
-    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions, snakes: list[Snake]):
         position = positions[number]
         possibilities = []
         for direction in possible_directions:
