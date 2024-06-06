@@ -1,6 +1,7 @@
 import random
 
-from ais.ai import AlternativeAI, NoobAI, CuddleAI, QueenAI
+from ais.ai import AlternativeAI, NoobAI, CuddleAI
+from ais.queen import QueenAI
 from constants import DIRECTIONS
 from game_objects.snake import Snake
 
