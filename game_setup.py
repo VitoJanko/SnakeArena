@@ -1,13 +1,15 @@
 import random
 
 from ais.ai import AlternativeAI, NoobAI, CuddleAI
+from constants import DIRECTIONS
 from game_objects.snake import Snake
+
 
 def get_snakes(grid):
     snakes = [
         Snake(
             initial_position=get_random_start(grid),
-            direction="RIGHT",
+            direction=random.choice(list(DIRECTIONS.keys())),
             color=(0, 255, 0),
             grid=grid,
             number=0,
@@ -15,7 +17,7 @@ def get_snakes(grid):
         ),
         Snake(
             initial_position=get_random_start(grid),
-            direction="LEFT",
+            direction=random.choice(list(DIRECTIONS.keys())),
             color=(255, 0, 0),
             grid=grid,
             number=1,
@@ -23,7 +25,7 @@ def get_snakes(grid):
         ),
         Snake(
             initial_position=get_random_start(grid),
-            direction="UP",
+            direction=random.choice(list(DIRECTIONS.keys())),
             color=(0, 0, 255),
             grid=grid,
             number=2,
@@ -31,7 +33,7 @@ def get_snakes(grid):
         ),
         Snake(
             initial_position=get_random_start(grid),
-            direction="LEFT",
+            direction=random.choice(list(DIRECTIONS.keys())),
             color=(255, 0, 255),
             grid=grid,
             number=3,
@@ -39,7 +41,7 @@ def get_snakes(grid):
         ),
         Snake(
             initial_position=get_random_start(grid),
-            direction="LEFT",
+            direction=random.choice(list(DIRECTIONS.keys())),
             color=(255, 255, 0),
             grid=grid,
             number=4,
@@ -47,7 +49,7 @@ def get_snakes(grid):
         ),
         Snake(
             initial_position=get_random_start(grid),
-            direction="UP",
+            direction=random.choice(list(DIRECTIONS.keys())),
             color=(0, 255, 255),
             grid=grid,
             number=5,
