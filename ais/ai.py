@@ -3,6 +3,7 @@ import random
 from constants import DIRECTIONS
 from game_objects.snake import Snake
 from copy import deepcopy
+import time
 
 class BaseAI:
 
@@ -44,10 +45,11 @@ class AlternativeAI:
                 break
 
         return direction
-    
-    
-NUM_MOVES = 50
+
+
 class CuddleAI:
+    def __init__(self) -> None:
+        self.NUM_MOVES = 2500
     def get_direction_internal(self, grid, number, position, current_direction, possible_directions):
         possibilities = []
         for direction in possible_directions:
@@ -63,7 +65,7 @@ class CuddleAI:
     def dummy(self, grid, number, position, possible_directions):
         # print(positions)
         # position = positions[number] 
-        for i in range(NUM_MOVES):
+        for i in range(self.NUM_MOVES):
             position_str = self.get_direction_internal(grid, number, position, None, possible_directions) 
             xd, yd = DIRECTIONS[position_str]
             new_head = (position[0] + xd, position[1] + yd)
@@ -72,10 +74,10 @@ class CuddleAI:
                 return i
             grid[new_head[0]][new_head[1]] = number
             position = new_head
-        return NUM_MOVES
+        return self.NUM_MOVES
 
     def get_direction(self, grid, number, positions, current_direction, possible_directions, snakes):
-   
+        start_time = time.time()
         moves_dict = []
         
         for possible_direction in possible_directions:
@@ -83,10 +85,8 @@ class CuddleAI:
             backup_positions = deepcopy(positions)
 
             dir_x, dir_y = DIRECTIONS[possible_direction]
-
-
             position = (backup_positions[number][0] + dir_x, backup_positions[number][1] + dir_y)
-            print(position)
+            # print(position)
 
             if collision(position[0], position[1], backup_grid):
                 continue
@@ -97,7 +97,7 @@ class CuddleAI:
             moves_dict.append((possible_direction, num_moves))
             
         moves_dict.sort(key=lambda x: x[1], reverse=True)
-        print(moves_dict)
+        # print(moves_dict)
         
         best_move = None
         if len(moves_dict):
@@ -109,10 +109,13 @@ class CuddleAI:
         for move in moves_dict:
             sum += move[1]
             
-        if sum == 3*NUM_MOVES:
-            return default_move
-        elif best_move is not None:
+        # if sum == 3*NUM_MOVES:
+        #     return default_move
+        print((time.time() - start_time) * 1000)
+        if best_move is not None:
             return best_move[0]
+        elif len(set([x[1] for x in moves_dict])) == 1 and len(moves_dict) == 3:
+            return default_move
         else:
             return default_move
 
