@@ -1,6 +1,7 @@
 import random
 
 from ais.ai import AlternativeAI, NoobAI, CuddleAI
+from ais.poolai import PoolAI
 from constants import DIRECTIONS
 from game_objects.snake import Snake
 
@@ -55,10 +56,18 @@ def get_snakes(grid):
             number=5,
             name="tenis"
         ),
+        Snake(
+            initial_position=get_random_start(grid),
+            direction=random.choice(list(DIRECTIONS.keys())),
+            color=(0, 255, 255),
+            grid=grid,
+            number=6,
+            name="tenis"
+        ),
 
     ]
 
-    AIs = [AlternativeAI(), NoobAI(), CuddleAI(), AlternativeAI(), NoobAI(), CuddleAI()]
+    AIs = [AlternativeAI(), NoobAI(), CuddleAI(), AlternativeAI(), NoobAI(), CuddleAI(), PoolAI()]
     return snakes, AIs
 
 
