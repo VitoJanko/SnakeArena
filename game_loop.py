@@ -51,14 +51,13 @@ def main():
                         direction = AI.get_direction(
                             new_grid,
                             snake.number,
-                            snake.get_head_position(),
+                            {snake.number: snake.get_head_position() for snake in snakes},
                             snake.direction,
                             snake.get_possible_directions(),
                         )
                         snake.direction = direction
                 snakes_alive = [snake for snake in snakes if snake.alive]
                 iteration += 1
-                print(iteration)
                 if len(snakes_alive) == 1:
                     snakes_alive[0].score += 1
                     break

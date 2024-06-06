@@ -5,13 +5,14 @@ from constants import DIRECTIONS
 
 class BaseAI:
 
-    def get_direction(self, grid, number, position, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions):
         return random.choice(possible_directions)
 
 
 class NoobAI:
 
-    def get_direction(self, grid, number, position, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+        position = positions[number]
         head_x, head_y = position
         direction = possible_directions[0]
         for _ in range(15):
@@ -25,7 +26,8 @@ class NoobAI:
 
 class AlternativeAI:
 
-    def get_direction(self, grid, number, position, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+        position = positions[number]
         head_x, head_y = position
         direction = current_direction
         dir_x, dir_y = DIRECTIONS[direction]
@@ -44,7 +46,8 @@ class AlternativeAI:
 
 
 class CuddleAI:
-    def get_direction(self, grid, number, position, current_direction, possible_directions):
+    def get_direction(self, grid, number, positions, current_direction, possible_directions):
+        position = positions[number]
         possibilities = []
         for direction in possible_directions:
             dir_x, dir_y = DIRECTIONS[direction]
