@@ -61,7 +61,7 @@ class CuddleAI:
 
 
 def collision(head_x, head_y, grid):
-    if head_x < 0 or head_x >= len(grid[0]) or head_y < 0 or head_y >= len(grid):
+    if head_x < 0 or head_x >= len(grid) or head_y < 0 or head_y >= len(grid[0]):
         return True
     if grid[head_x][head_y] is not None:
         return True
@@ -73,7 +73,7 @@ def number_of_neighbors(head_x, head_y, grid, number):
     for direction in DIRECTIONS.values():
         new_x = head_x + direction[0]
         new_y = head_y + direction[1]
-        if new_x < 0 or new_x >= len(grid[0]) or new_y < 0 or new_y >= len(grid):
+        if new_x < 0 or new_x >= len(grid) or new_y < 0 or new_y >= len(grid[0]):
             continue
         if grid[new_x][new_y] == number:
             neighbors += 1

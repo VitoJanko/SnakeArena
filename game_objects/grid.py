@@ -34,8 +34,8 @@ class Grid:
         grid = [
             [
                 self.grid[i][j].number if self.grid[i][j] is not None else None
-                for i in range(self.width)
+                for i in range(self.height)
             ]
-            for j in range(self.height)
+            for j in range(self.width)
         ]
         return grid
