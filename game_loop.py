@@ -56,8 +56,8 @@ def main():
                     snake.direction = direction
         snakes_alive = [snake for snake in snakes if snake.alive]
         iteration += 1
-        if len(snakes_alive) <= 0:
-            if len(snakes_alive) == 0:
+        if len(snakes_alive) <= 1:
+            if len(snakes_alive) == 1:
                 snakes_alive[0].score += 1
 
             snakes_old = snakes
@@ -65,8 +65,8 @@ def main():
             snakes, ais = get_snakes(grid)
             for snake_new, snake_old in zip(snakes, snakes_old):
                 snake_new.score = snake_old.score
-            current_round +=1
-            if current_round <= MAX_ROUNDS:
+            current_round += 1
+            if current_round >= MAX_ROUNDS:
                 break
 
         pygame.display.flip()

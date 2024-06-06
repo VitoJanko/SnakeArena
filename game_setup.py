@@ -61,4 +61,4 @@ def get_snakes(grid):
 
 
 def get_random_start(grid):
-    return random.choice(range(len(grid.grid))), random.choice(range(len(grid.grid[0])))
+    return random.choice(range(2, len(grid.grid)-2)), random.choice(range(2, len(grid.grid[0])-2))
