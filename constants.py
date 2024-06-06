@@ -5,6 +5,8 @@ CELL_SIZE = 20
 SCREEN_WIDTH = GRID_WIDTH * CELL_SIZE + 250  # Extra space for the score
 SCREEN_HEIGHT = GRID_HEIGHT * CELL_SIZE
 
+MAX_ROUNDS = 10
+
 DIRECTIONS = {
     "UP": (0, -1),
     "DOWN": (0, 1),
