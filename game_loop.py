@@ -12,8 +12,6 @@ def main():
     clock = pygame.time.Clock()
     load_images(pygame)
 
-    grid = Grid(GRID_WIDTH, GRID_HEIGHT)
-    snakes = None
     font = pygame.font.Font(None, 36)
     iteration = 0
     running = True
@@ -28,12 +26,19 @@ def main():
                 running = False
 
         # Move snakes
+        extra_collision = []
         for snake in snakes:
             if snake.alive:
-                snake.special_move("turbo")
                 snake.move()
-                if grid.check_collision(snake):
+                extra_collision += snake.get_head_position()
+
+        for i, snake in enumerate(snakes):
+            if snake.alive:
+                if grid.check_collision(snake, extra_collision, i):
                     snake.alive = False
+
+        for snake in snakes:
+            if snake.alive:
                 snake.grid.update_snake_position(snake)
 
         # Draw everything
@@ -60,13 +65,14 @@ def main():
         if len(snakes_alive) <= 1:
             if len(snakes_alive) == 1:
                 snakes_alive[0].score += 1
+                current_round += 1
 
             snakes_old = snakes
             grid = Grid(GRID_WIDTH, GRID_HEIGHT)
             snakes, ais = get_snakes(grid)
             for snake_new, snake_old in zip(snakes, snakes_old):
                 snake_new.score = snake_old.score
-            current_round += 1
+
             if current_round >= MAX_ROUNDS:
                 breakpoint()
 
