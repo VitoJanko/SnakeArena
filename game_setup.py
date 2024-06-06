@@ -34,7 +34,7 @@ def get_snakes(grid):
             direction="LEFT",
             color=(255, 0, 255),
             grid=grid,
-            number=4,
+            number=3,
             name="tax-fin-lex"
         ),
         Snake(
