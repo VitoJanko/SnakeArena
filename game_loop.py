@@ -30,12 +30,14 @@ def main():
         for snake in snakes:
             if snake.alive:
                 snake.move()
-                extra_collision += snake.get_head_position()
+                extra_collision.append(snake.get_head_position())
 
-        for i, snake in enumerate(snakes):
+        index = 0
+        for snake in snakes:
             if snake.alive:
-                if grid.check_collision(snake, extra_collision, i):
+                if grid.check_collision(snake, extra_collision, index):
                     snake.alive = False
+                index += 1
 
         for snake in snakes:
             if snake.alive:

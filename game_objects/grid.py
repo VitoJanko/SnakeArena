@@ -12,8 +12,7 @@ class Grid:
             self.grid[y][x] = snake
 
     def check_collision(self, snake, extra_collision, number):
-        extra_collision = [extra_collision[:number]] + [extra_collision[number+1:]]
-
+        extra_collision = extra_collision[:number] + extra_collision[number+1:]
         collision = any(
             [
                 self.check_one_collision(segment, extra_collision)
