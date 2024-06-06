@@ -69,7 +69,7 @@ class AlternativeAI:
         return direction
 
 
-class CuddleAI:
+class PoolAI:
     def __init__(self) -> None:
         self.NUM_MOVES = 2500
 
