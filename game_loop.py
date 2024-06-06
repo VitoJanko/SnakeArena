@@ -48,14 +48,16 @@ def main():
                 for AI, snake in zip(ais, snakes):
                     draw_snake(screen, snake, pygame)
                     if snake.alive:
+                        possible_directions = snake.get_possible_directions()
                         direction = AI.get_direction(
                             new_grid,
                             snake.number,
                             {snake.number: snake.get_head_position() for snake in snakes},
                             snake.direction,
-                            snake.get_possible_directions(),
+                            possible_directions
                         )
-                        snake.direction = direction
+                        if direction in possible_directions:
+                            snake.direction = direction
                 snakes_alive = [snake for snake in snakes if snake.alive]
                 iteration += 1
                 if len(snakes_alive) == 1:
