@@ -60,9 +60,9 @@ class CuddleAI:
         possibilities.sort(key=lambda x: x[1], reverse=True)
         return possibilities[0][0]
     
-    def dummy(self, grid, number, positions, possible_directions):
-        print(positions)
-        position = positions[number] 
+    def dummy(self, grid, number, position, possible_directions):
+        # print(positions)
+        # position = positions[number] 
         for i in range(NUM_MOVES):
             position_str = self.get_direction_internal(grid, number, position, None, possible_directions) 
             xd, yd = DIRECTIONS[position_str]
@@ -80,15 +80,30 @@ class CuddleAI:
         
         for possible_direction in possible_directions:
             backup_grid = deepcopy(grid)
-            num_moves = self.dummy(backup_grid, number, positions, DIRECTIONS.keys())
+            backup_positions = deepcopy(positions)
+
+            dir_x, dir_y = DIRECTIONS[possible_direction]
+
+
+            position = (backup_positions[number][0] + dir_x, backup_positions[number][1] + dir_y)
+            print(position)
+
+            if collision(position[0], position[1], backup_grid):
+                continue
+            backup_grid[position[0]][position[1]] = number
+
+            num_moves = self.dummy(backup_grid, number, position, DIRECTIONS.keys())
             
             moves_dict.append((possible_direction, num_moves))
             
         moves_dict.sort(key=lambda x: x[1], reverse=True)
+        print(moves_dict)
         
-        best_move=moves_dict[0]
+        best_move = None
+        if len(moves_dict):
+            best_move = moves_dict[0]
  
-        default_move =  self.get_direction_internal(grid, number, positions[number], current_direction, possible_directions)         
+        default_move = self.get_direction_internal(grid, number, positions[number], current_direction, possible_directions)         
         
         sum = 0
         for move in moves_dict:
@@ -96,8 +111,10 @@ class CuddleAI:
             
         if sum == 3*NUM_MOVES:
             return default_move
-        else:
+        elif best_move is not None:
             return best_move[0]
+        else:
+            return default_move
 
 
 
