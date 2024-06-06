@@ -1,6 +1,6 @@
 import random
 
-from ais.ai import AlternativeAI, NoobAI, CuddleAI
+from ais.ai import AlternativeAI, NoobAI, PoolAI
 from game_objects.snake import Snake
 
 def get_snakes(grid):
@@ -56,7 +56,7 @@ def get_snakes(grid):
 
     ]
 
-    AIs = [AlternativeAI(), NoobAI(), CuddleAI(), AlternativeAI(), NoobAI(), CuddleAI()]
+    AIs = [AlternativeAI(), NoobAI(), PoolAI(), AlternativeAI(), NoobAI(), PoolAI()]
     return snakes, AIs
 
 
