@@ -1,5 +1,5 @@
 import pygame
-
+import time
 from constants import GRID_WIDTH, GRID_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, MAX_ROUNDS
 from drawing import draw_grid, draw_snake, load_images, draw_scores
 from game_objects.grid import Grid
@@ -19,6 +19,7 @@ def main():
 
     grid = Grid(GRID_WIDTH, GRID_HEIGHT)
     snakes, ais = get_snakes(grid)
+    debug = False
 
     while running:
         for event in pygame.event.get():
@@ -48,9 +49,10 @@ def main():
         draw_grid(screen, pygame)
         draw_scores(screen, snakes, font)
         new_grid = grid.get_grid()
-        for AI, snake in zip(ais, snakes):
+        for i, (AI, snake) in enumerate(zip(ais, snakes)):
             draw_snake(screen, snake, pygame)
             if snake.alive:
+                start = time.time()
                 possible_directions = snake.get_possible_directions()
                 direction = AI.get_direction(
                     new_grid,
@@ -60,6 +62,9 @@ def main():
                     possible_directions,
                     snakes,
                 )
+                end = time.time()
+                if debug:
+                    print(end - start)
                 if direction in possible_directions:
                     snake.direction = direction
         snakes_alive = [snake for snake in snakes if snake.alive]
