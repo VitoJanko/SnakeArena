@@ -64,7 +64,7 @@ def main():
                 )
                 end = time.time()
                 if debug:
-                    print(end - start)
+                    print(snake.name, int((end - start)*1000))
                 if direction in possible_directions:
                     snake.direction = direction
         snakes_alive = [snake for snake in snakes if snake.alive]
