@@ -1,28 +1,32 @@
 import random
 
 from ais.ai import AlternativeAI, NoobAI, CuddleAI
+from ais.ekans.main import EkansAI
+from ais.monte_ai import SpaceCountAI, SpaceBlockerAI, MonteAI, TwoFaceAI
+from ais.pitoni import PitoniAI
 from ais.poolai import PoolAI
 from constants import DIRECTIONS
 from game_objects.snake import Snake
 
 
+
 def get_snakes(grid):
     snakes = [
-        Snake(
-            initial_position=get_random_start(grid),
-            direction=random.choice(list(DIRECTIONS.keys())),
-            color=(0, 255, 0),
-            grid=grid,
-            number=0,
-            name="preskok"
-        ),
+        # Snake(
+        #     initial_position=get_random_start(grid),
+        #     direction=random.choice(list(DIRECTIONS.keys())),
+        #     color=(0, 255, 0),
+        #     grid=grid,
+        #     number=0,
+        #     name="SmallSnake"
+        # ),
         Snake(
             initial_position=get_random_start(grid),
             direction=random.choice(list(DIRECTIONS.keys())),
             color=(255, 0, 0),
             grid=grid,
             number=1,
-            name="sonce"
+            name="EkansAI"
         ),
         Snake(
             initial_position=get_random_start(grid),
@@ -30,7 +34,7 @@ def get_snakes(grid):
             color=(0, 0, 255),
             grid=grid,
             number=2,
-            name="delo"
+            name="PitoniAI"
         ),
         Snake(
             initial_position=get_random_start(grid),
@@ -38,36 +42,21 @@ def get_snakes(grid):
             color=(255, 0, 255),
             grid=grid,
             number=3,
-            name="tax-fin-lex"
+            name="PoolAI"
         ),
+
         Snake(
             initial_position=get_random_start(grid),
             direction=random.choice(list(DIRECTIONS.keys())),
             color=(255, 255, 0),
             grid=grid,
             number=4,
-            name="aicondition"
-        ),
-        Snake(
-            initial_position=get_random_start(grid),
-            direction=random.choice(list(DIRECTIONS.keys())),
-            color=(0, 255, 255),
-            grid=grid,
-            number=5,
-            name="tenis"
-        ),
-        Snake(
-            initial_position=get_random_start(grid),
-            direction=random.choice(list(DIRECTIONS.keys())),
-            color=(0, 255, 255),
-            grid=grid,
-            number=6,
-            name="tenis"
+            name="TwoFace"
         ),
 
     ]
 
-    AIs = [AlternativeAI(), NoobAI(), CuddleAI(), AlternativeAI(), NoobAI(), CuddleAI(), PoolAI()]
+    AIs = [EkansAI(), PitoniAI(), PoolAI(), TwoFaceAI()]
     return snakes, AIs
 
 

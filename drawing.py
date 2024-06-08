@@ -12,6 +12,14 @@ def load_images(pygame):
         "tenis": pygame.image.load("./images/4.png"),
         "tax-fin-lex": pygame.image.load("./images/5.png"),
         "aicondition": pygame.image.load("./images/6.png"),
+
+        "EkansAI": pygame.image.load("./images/3.png"),
+        "PoolAI": pygame.image.load("./images/1.png"),
+        "MediumSnake": pygame.image.load("./images/2.png"),
+        "SmallSnake": pygame.image.load("./images/3.png"),
+        "PitoniAI": pygame.image.load("./images/4.png"),
+        "LargeSnake": pygame.image.load("./images/5.png"),
+        "TwoFace": pygame.image.load("./images/5.png"),
     }
 
 def draw_grid(screen, pygame):
@@ -63,5 +71,5 @@ def draw_snake(screen, snake: Snake, pygame):
 def draw_scores(screen, snakes: list[Snake], font):
     for i, snake in enumerate(snakes):
         score_text = f"{snake.name.upper()}: {snake.score}"
-        text_surface = font.render(score_text, True, (255, 255, 255))
+        text_surface = font.render(score_text, True, snake.color)
         screen.blit(text_surface, (GRID_WIDTH * CELL_SIZE + 20, 20 + i * 60))
